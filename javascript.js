@@ -1,8 +1,11 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
-    const randomNum = Math.floor(Math.random() * 3);
-    if (randomNum === 0) {
+    const random = Math.floor(Math.random() * 3); 
+    if (random === 0) {
         return "rock";
-    } else if (randomNum === 1) {
+    } else if (random === 1) {
         return "paper";
     } else {
         return "scissors";
@@ -34,4 +37,29 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
 }
+
+function playGame() {
+    humanScore = 0;
+    computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+
+        console.log(`Round ${i + 1}:`);
+        console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+    }
+
+    if (humanScore > computerScore) {
+        console.log("Congratulations! You are the overall winner!");
+    } else if (humanScore < computerScore) {
+        console.log("Sorry, the computer won overall!");
+    } else {
+        console.log("It's a tie overall!");
+    }
+}
+
+playGame();
 
